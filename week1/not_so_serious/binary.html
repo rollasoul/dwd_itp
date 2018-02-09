@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<header> <meta charset="utf-8"> </header>
+<head> <link rel="stylesheet" type="text/css" href="binary.css"> </head>
+<body>
+
+  <div class="row" style="text-align: center; margin-right: 20%; margin-left: 20%;">
+    <div class="column">
+      <span style="color:blue;" class="blink_text">はつしぐれさるもこみのをほしげなり</span>
+      <!-- <p style="color:blue;">はつしぐれさるもこみのをほしげなり</p> -->
+      <br>
+      <p id="col1"></p>
+    </div>
+
+    <div class="column">
+      <span style="color:blue;" class="blink_text">初しぐれ猿も小蓑をほしげ也</span>
+      <!-- <p style="color:blue;">初しぐれ猿も小蓑をほしげ也</p> -->
+      <br>
+      <p id="col2"></p>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <p onclick="changeText(this)" style="color:red;">binary_haiku</p>
+  </div>
+
+
+  <script type="text/javascript" src="testJSON.json"></script>
+
+  <script>
+
+  let obj = JSON.parse(data);
+
+  function changeText(id) {
+    let c1 = document.querySelector("#col1");
+    let c2 = document.querySelector("#col2");
+    let poem1 = obj[0].line1;
+    let poem2 = obj[1].line2;
+    let letter1 = "";
+    let letter2 = "";
+    let bin_line1 = "";
+    let bin_line2 = "";
+    for(let i = 0; i< poem1.length; i++){
+      letter1 = obj[0].line1.charCodeAt(i);
+      bin_line1 += dec2bin(letter1) + "<br>";
+    }
+    for(let i = 0; i< poem2.length; i++){
+      letter2 = obj[1].line2.charCodeAt(i);
+      bin_line2 += dec2bin(letter2) + "<br>";
+    }
+    c1.innerHTML = bin_line1;
+    c2.innerHTML = bin_line2;
+  }
+
+  function dec2bin(dec){
+    return (dec >>> 0).toString(2);
+  }
+</script>
+
+</body>
+</html>
