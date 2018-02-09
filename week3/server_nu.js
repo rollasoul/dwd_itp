@@ -1,7 +1,7 @@
 // so much to declare ...
 var config  = require('./db_config.js');
 var mongojs = require('mongojs');
-console.log(config.mlabstring);
+//console.log(config.mlabstring);
 var db = mongojs(config.mlabstring, ["dwd_test"]);
 
 var express = require('express');
