@@ -1,14 +1,14 @@
 // so much to declare ...
 var config  = require('./db_config.js');
 var mongojs = require('mongojs');
-//console.log(config.mlabstring);
 var db = mongojs(config.mlabstring, ["dwd_test"]);
-
+// we are using express
 var express = require('express');
 var app = express();
 var lost = [];
+var data = {};
+// for parsing form data
 var bodyParser = require('body-parser');
-// for parsing form data (needed for POST?)
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(urlencodedParser);
 // make express see the world with ejs-eyes
@@ -17,47 +17,38 @@ app.set('view engine', 'ejs');
 //create static directory for css so that ejs knows where to find it
 app.use(express.static(__dirname + '/public'));
 
-// database to store data from user input
-//var Datastore = require('nedb');
-//var db = new Datastore({filename: "data.db", autoload: true});
-
 // create a starting page/route for user input,
 // refer to html file inside 'public '
-app.get('/yo', function (req, res) {
-	var fileToSend = "yo.html";
+app.get('/question', function (req, res) {
+	var fileToSend = "question.html";
 	res.sendFile(fileToSend, {root: './public'});
 });
 
-// create a POST-route for the data to be  stored in nedb-file,
-// redirect to an output page (probably not really needed?)
+// create a POST-route for the data to be  stored in remote mongodb-file,
+// redirect to an output page (probably not really needed - but maybe more transparent?)
 app.post('/processit', function(req, res) {
 	var textvalue = req.body.textfield;
-	db.dwd_test.save({"person":textvalue}, function(err, saved) {
+	db.dwd_test.save({"input":textvalue}, function(err, saved) {
  		if( err || !saved ) console.log("Not saved");
  		else console.log("Saved");
 	});
-	//var textvalue = req.body.textfield;
-	//var datatosave = {
-		//name: textvalue}
-		//db.insert(datatosave, function (err, newDocs) {
-		//	console.log("err: " + err);
-		//	console.log("newDocs: " + newDocs);
-		//});
-	res.redirect('/templatetest');
+	res.redirect('/meaning');
 });
 
-// access the nedb-file, retrieve the inputs and output to ejs-file
-app.get('/templatetest', function(req, res) {
-        // Find all of the existing docs in the database
-	//var data = "ha";
+// access the mongodb-file, retrieve the inputs and output to ejs-file
+app.get('/meaning', function(req, res) {
+        // find all of the existing entries in the remote database
+	// store them in data object
 	lost = [];
         db.dwd_test.find({}, function(err, saved) {
                 for (var i = 0; i < saved.length; i++) {
-                        lost.push(" " + saved[i].person);
+                        lost.push(" " + saved[i].input);
 	        }
-		console.log(lost);
-		data = {person: {name: lost}};
-		res.render('template.ejs', data);
+//		console.log(lost);
+		//data = {person: {name: lost}};
+		lost = {data: lost};
+//		console.log(lost);
+		res.render('template.ejs', lost);
         });
 });
 
