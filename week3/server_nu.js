@@ -44,10 +44,7 @@ app.get('/meaning', function(req, res) {
                 for (var i = 0; i < saved.length; i++) {
                         lost.push(" " + saved[i].input);
 	        }
-//		console.log(lost);
-		//data = {person: {name: lost}};
 		lost = {data: lost};
-//		console.log(lost);
 		res.render('template.ejs', lost);
         });
 });
