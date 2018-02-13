@@ -1,15 +1,15 @@
 <html>
-<head> <link rel="stylesheet" type="text/css" href="/template.css"> </head>
+<head> <link rel="stylesheet" type="text/css" href="/template_question.css"> </head>
 <body>
-  <div class="row" style="text-align: center; margin-right: 20%; margin-left: 20%;">
-    <div class="column">
-	<p>What's the meaning of life?
+	<p>Why is life worth living?<br><br>
 	<form method="POST" action="/processit" text-align="center">
 	<input type="text" name="textfield" value="" text-align="center"/>
-
-	<input id="submitBtn" type="submit" name="submitbutton" value="ahoi!" text-align="center" />
+	<input id="submitBtn" type="submit" name="submitbutton" value="!" text-align="center" />
+	</form>
+	<br><br>
+	<form method="GET" action="/search" text-align="center">
+	<input type="text" name="q"><input type="submit" name="submit" value="?">
 	</form>
 	</p>
-    </div>
 </body>
 </html>

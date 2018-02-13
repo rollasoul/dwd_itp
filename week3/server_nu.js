@@ -48,6 +48,25 @@ app.get('/meaning', function(req, res) {
 		res.render('template.ejs', lost);
         });
 });
+app.get('/search', function(req,res){
+	lost = [];
+	var query = new RegExp(req.query.q, 'i');
+	db.dwd_test.find({input: query}, function(err, saved) {
+		console.log(query);
+		if( err || !saved) {
+			console.log("No results");
+		}
+      		else {
+			for (var i = 0; i < saved.length; i++) {
+                        	lost.push(" " + saved[i].input);
+                	}
+			lost = {data: lost};
+			res.render("template_search.ejs", lost);
+			console.log(lost);
+		}
+      	});
+
+});
 
 // we're live on port 3000
 app.listen(3000);

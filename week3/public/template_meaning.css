@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker: 100, 100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+div {
+    width: 20%;
+    height: 5%;
+    /*background-color: red;*/
+    position: relative;
+    animation: mymove 20s infinite;
+}
+
+/* Standard syntax */
+#div1 {animation-timing-function: linear;}
+#div2 {animation-timing-function: ease;}
+#div3 {animation-timing-function: ease-in;}
+#div4 {animation-timing-function: ease-out;}
+#div5 {animation-timing-function: ease-in-out;}
+
+
+/* Standard syntax */
+@keyframes mymove {
+    from {left: 20%; opacity: 1;}
+    to {left: 80%; opacity: 0}
+}
+
+.column {
+  float: center;
+  width: 100%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+body {
+  font-size: 100%;
+  margin-top: 20%; 
+  background-image: url("meaning_plain_2.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: red;
+  font-family: 'Permanent Marker', cursive;
+  font-size:10.0em;
+  text-align: center;
+}
+
+p {
+  color: white;
+  font-family: 'Cutive Mono', monospace;
+  font-size:1.0em;
+  text-align: center;
+}
+
+input[type=text] {
+  color: black;
+  font-family: 'Cutive Mono', monospace;
+  text-align: center;
+}
+input[type=submit] {
+  color: black;
+  font-family: 'Cutive Mono', monospace;
+  text-align: center;
+}
+textarea{
+  color: black;
+  font-family: 'Cutive Mono', monospace;
+  text-align: center;
+}
