@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+h1 {
+  color: yellow;
+  font-family: 'Permanent Marker', cursive;
+  font-size:10.0em;
+  text-align: center;
+}
+
+
+body {
+  font-size: 100%;
+  margin-top: 8%;
+  background-image: url("meaning_plain_4.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+p {
+  color: white;
+  font-family: 'Cutive Mono', monospace;
+  font-size:2.0em;
+  text-align: center;
+}
+
+button {
+  font-family: 'Cutive Mono', monospace;  margin: 0px auto;
+  display: block;
+  background-color: pink; /* Green */
+  border: none;
+  color: red;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 80px;
+}
+
+div {
+  margin: 0px auto;
+  display: block;
+  text-align: center;
+}

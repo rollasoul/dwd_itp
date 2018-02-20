@@ -1,0 +1,83 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/weather.css">
+</head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//assign a function to each button/class (https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_hide_explanations)
+		$('.cycle').click(function(){
+		$.ajax({
+		  url: "http://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&APPID=2001ad5690dde5f0456ce3ddea6e76a9",
+			dataType: 'json',
+		  success: function(data) {
+			console.log(data.weather);
+			// looking for rain ...
+			var needle = 'Rain';
+			var find = '';
+			for (var i = 0; i < data.weather.length; i++){
+			  if (data.weather[i].main == needle){
+					//$("p").html("Grab your rain jacket, it's gonna rain today");
+					console.log("success")
+					var find = 1;
+			  }
+			}
+			if (find == 1) {
+				$("p").html("Grab your rain jacket, it's gonna rain today" + "<br>" + "And LISTEN:");
+				$("div").html('<iframe width="20%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FNTSRadio%2Fjimmys-punk-show-19th-january-2018%2F" frameborder="0" ></iframe>');
+			}
+			if (find !== 1) {
+				$("p").html("Time for a lighter jacket, it's not gonna rain today." + "<br>" + "Listen with a smile on your face:");
+				$("div").html('<iframe width="20%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&feed=%2FNTSRadio%2Facid-memories-24th-january-2018%2F" frameborder="0" ></iframe>');
+			}
+		  },
+		  error: function() {
+			alert("error");
+		  }
+		});
+	});
+	$('.MTA').click(function(){
+	$.ajax({
+		url: "http://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&APPID=2001ad5690dde5f0456ce3ddea6e76a9",
+		dataType: 'json',
+		success: function(data) {
+		$('p').html("MTA? Really? Take it with a ZEN approach." + "<br>" + "Anyway, it's gonna be " + data.main.temp + ". C˚" + "<br>" + "Hear the universe:");
+		$("div").html('<iframe width="20%" height="60" src="https://www.youtube.com/embed/34UutDrXV2Q?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0"></iframe>');
+		//alert("Temperature is: " + data.main.temp );
+		},
+		error: function() {
+		alert("error");
+		}
+	});
+	});
+	$('.love').click(function(){
+	$.ajax({
+		url: "http://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&APPID=2001ad5690dde5f0456ce3ddea6e76a9",
+		dataType: 'json',
+		success: function(data) {
+		if (data.main.temp > 20.00){
+			$('p').html("go naked today & love the world at " + data.main.temp + " C˚");
+		}
+		if (data.main.temp < 20.00){
+			$('p').html("Unfortunately you can't go naked today." + "<br>" + " Sorry, no astral love for the world at " + data.main.temp + " C˚." + "<br>" + "But smiles:");
+			$ ('div').html('<iframe width="20%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&feed=%2FNTSRadio%2Facid-memories-1st-november-2017%2F" frameborder="0" ></iframe>')
+		}
+		//alert("Temperature is: " + data.main.temp );
+		},
+		error: function() {
+		alert("error");
+		}
+	});
+	});
+	});
+</script>
+<body>
+	<h1>I am up for</h1>
+	<p></p>
+	<div></div>
+	<br>
+	<button class="cycle">cycling fun </button><br>
+	<button class="MTA">MTA roulette</button><br>
+	<button class="love">eternal world love</button>
+</body>
+</html>
